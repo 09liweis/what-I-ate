@@ -18,3 +18,19 @@ Route::get('/', function () {
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('/dashboard', 'AdminController@dashboard');
+
+Route::get('/user/food', 'AdminController@index');
+
+Route::get('/user/food/{id}', 'AdminController@detail');
+
+Route::post('/user/food/create', 'AdminController@create');
+
+Route::put('/user/food/update/{id}', 'AdminController@update');
+
+Route::delete('/user/food/delete/{id}', 'AdminController@delete');
+
+Route::get('/api', 'AdminController@api');
+
+Route::get('/food', 'FoodController@index');
