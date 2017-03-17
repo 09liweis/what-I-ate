@@ -21,7 +21,7 @@ var dashboard = new Vue({
             google_place_id: '',
         },
         foods: [],
-        map: new google.maps.Map(document.getElementById('map')),
+        map: null,
         service: null,
         searchLocation: '',
         locations: [],
@@ -47,10 +47,15 @@ var dashboard = new Vue({
     
     mounted: function() {
         this.fetchFoods();
+        this.map = new google.maps.Map(document.getElementById('map'));
     },
     
     methods: {
-        changeParentTab: function(e) {
+        sortFood() {
+            this.foods.sort();
+        },
+
+        changeParentTab(e) {
             this.currentParentTab = e.target.name;
             e.preventDefault();
         },

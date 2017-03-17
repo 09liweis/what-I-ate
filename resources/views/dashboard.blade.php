@@ -1,11 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<style type="text/css">
-    #map {
-        display: none;
-    }
-</style>
 <div id="map"></div>
 <div class="container" id="dashboard">
     <h1>@{{ heading }}</h1>
@@ -17,11 +12,11 @@
         </div>
         <div class="col-md-10">
             <div id="food" v-if="currentParentTab == 'food'">
-                <ul class="nav nav-pills nav-justified">
+                <ul class="nav nav-pills nav-justified shadow-kit">
                     <li role="presentation" v-bind:class="{ active: currentTab == 'list' }"><a href="#list" name="list" v-on:click="changeTab">List</a></li>
                     <li role="presentation" v-bind:class="{ active: currentTab == 'form' }"><a href="#add" name="form" v-on:click="changeTab">@{{ action }}</a></li>
                 </ul>
-                <table v-if="currentTab == 'list'" class="table table-hover">
+                <table v-if="currentTab == 'list'" class="table table-hover shadow-kit">
                     <tr>
                         <td>Name</td>
                         <td>Photo</td>
@@ -77,10 +72,5 @@
         </div>
     </div>
 </div>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3djfQYTXbB8z3xMgg7ueTIs5j0bSBkS8&libraries=places" async defer></script>
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
-<script src="https://cdn.jsdelivr.net/vue.resource/1.2.0/vue-resource.min.js"></script>
-<script type="text/javascript" src="{{asset('/js/app.js')}}"></script>
 
 @endsection

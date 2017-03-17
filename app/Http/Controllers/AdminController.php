@@ -20,7 +20,43 @@ class AdminController extends Controller
     }
     
     public function dashboard() {
-        return view('dashboard');
+        return view('dashboard', array('scripts' => array('google', '/js/app.js')));
+    }
+    
+    public function admin() {
+        return view('admin', array('scripts' => array('google', '/js/admin.js')));
+    }
+    
+    public function locations() {
+        return Location::all();
+    }
+    
+    public function location($id) {
+        return Location::find($id);
+    }
+    
+    public function createLocation(Request $request) {
+        $google_place_id = $request->google_place_id;
+        $location = Location::where('google_place_id', $google_place_id)->first();
+        if (!$location) {
+            $location = new Location();
+            $this->createOrUpdateLocation($location, $request);   
+        }
+    }
+    
+    public function updateLocation(Request $request, $id) {
+        $location = Location::find($id);
+        $this->createOrUpdateLocation($location, $request);
+    }
+    
+    public function createOrUpdateLocation($location, $request) {
+        $location->name = $request->name;
+        $location->address = $request->address;
+        $location->lat = $request->lat;
+        $location->lng = $request->lng;
+        $location->photo_url = $request->photo_url;
+        $location->google_place_id = $request->google_place_id;
+        $location->save();
     }
     
     //list of Foods

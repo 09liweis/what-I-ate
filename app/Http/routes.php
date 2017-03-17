@@ -19,6 +19,11 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('/admin', 'AdminController@admin');
+Route::get('/admin/locations', 'AdminController@locations');
+Route::get('/admin/location/{id}', 'AdminController@location');
+Route::post('/admin/location/create', 'AdminController@createLocation');
+Route::put('/admin/location/update/{id}', 'AdminController@updateLocation');
 Route::get('/dashboard', 'AdminController@dashboard');
 
 Route::get('/user/food', 'AdminController@index');
@@ -33,4 +38,6 @@ Route::delete('/user/food/delete/{id}', 'AdminController@delete');
 
 Route::get('/api', 'AdminController@api');
 
-Route::get('/food', 'FoodController@index');
+Route::get('/food/{id?}', 'FoodController@index');
+
+Route::get('/location/{id?}', 'LocationController@index');

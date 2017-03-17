@@ -11,9 +11,15 @@ use App\User;
 
 class FoodController extends Controller {
     
-    public function index() {
-        $foods = Food::with('user')->get();
-        return $foods;
+    public function index($id = null) {
+        if ($id != null) {
+            $food = Food::find($id);
+            return view('food/single', array('food' => $food, 'scripts' => array()));
+        } else {
+            $foods = Food::with('user')->get();
+            //return $foods;
+            return view('food/list', array('foods' => $foods, 'scripts' => array()));   
+        }
     }
     
 }

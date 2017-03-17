@@ -49,6 +49,8 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>
+                    <li><a href="{{ url('/food') }}">Food</a></li>
+                    <li><a href="{{ url('/location') }}">Location</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -79,6 +81,18 @@
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/vue.resource/1.2.0/vue-resource.min.js"></script>
+    @if (isset($scripts) && count($scripts) > 0)
+        @foreach ($scripts as $script)
+            @if ($script == 'google')
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3djfQYTXbB8z3xMgg7ueTIs5j0bSBkS8&libraries=places" async defer></script>
+            @else
+                <script type="text/javascript" src="{{asset($script)}}"></script>
+            @endif
+        @endforeach
+    @endif
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 </body>
 </html>

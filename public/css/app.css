@@ -1,3 +1,49 @@
+body {
+    background: #cccccc;
+}
+
+/*Dashboard*/
+#map {
+    display: none;
+}
+
 .table-image {
     width: 100px;
+}
+
+/*common*/
+.shadow-kit {
+    border-radius: 5px;
+    background: #ffffff;
+    box-shadow: -1px 1px 7px 2px #cccccc;
+    margin-bottom: 20px;
+}
+
+.shadow-kit .padding {
+    padding: 10px;
+}
+
+/*food*/
+.food {
+    margin-bottom: 20px;
+}
+
+.food-img-container {
+    padding-left: 0;
+}
+.food-img {
+    width: 100%;
+}
+
+.food-content {
+    position: relative;
+}
+
+.food-price {
+    color: red;
+}
+
+/*location*/
+#location-map {
+    height: 400px
 }
