@@ -47,12 +47,13 @@ var dashboard = new Vue({
     
     mounted: function() {
         this.fetchFoods();
-        this.map = new google.maps.Map(document.getElementById('map'));
     },
     
     methods: {
-        sortFood() {
-            this.foods.sort();
+        
+        initGoogleService() {
+            this.map = new google.maps.Map(document.getElementById('map'));
+            this.service = new google.maps.places.PlacesService(this.map);
         },
 
         changeParentTab(e) {
@@ -79,13 +80,12 @@ var dashboard = new Vue({
         },
 
         changeTab: function(e) {
-            console.log(e.target.name);
             this.currentTab = e.target.name;
             if (this.currentTab == 'list') {
                 this.action = 'add';
                 this.emptyNewFood();
             } else {
-                this.map = new google.maps.Map(document.getElementById('map'));
+                this.initGoogleService();
             }
             this.currentTab = e.target.name;
             e.preventDefault();
@@ -95,6 +95,13 @@ var dashboard = new Vue({
             for (var key in this.newFood) {
                 this.newFood[key] = '';
             }
+            
+            for (var key in this.location) {
+                this.location[key] = '';
+            }
+            
+            this.locations = [];
+            this.searchLocation = '';
         },
 
         fetchFoods: function() {
@@ -116,6 +123,16 @@ var dashboard = new Vue({
             this.emptyNewFood();
         },
         
+        editFood: function(id) {
+            this.initGoogleService();
+            this.currentTab = 'form';
+            this.$http.get('/user/food/' + id).then(function(food) {
+                this.newFood = food.data;
+                this.currentTab = 'form';
+                this.action = 'edit';
+            });
+        },
+        
         createFood: function() {
             var data = {
                 food: this.newFood,
@@ -123,15 +140,6 @@ var dashboard = new Vue({
             };
             this.$http.post('/user/food/create', data).then(function() {
                 this.fetchFoods();
-            });
-        },
-        
-        editFood: function(id) {
-            this.currentTab = 'form';
-            this.$http.get('/user/food/' + id).then(function(food) {
-                this.newFood = food.data;
-                this.currentTab = 'form';
-                this.action = 'edit';
             });
         },
         

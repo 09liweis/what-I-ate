@@ -35,7 +35,7 @@
                         </td>
                     </tr>
                 </table>
-                <form method="POST" v-if="currentTab == 'form'" v-on:submit.prevent="onSubmitForm">
+                <form method="POST" v-if="currentTab == 'form'" v-on:submit.prevent="onSubmitForm" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="">Name <span class="error" v-if="!newFood.name">*</span></label>
                         <input type="text" name="name" class="form-control" v-model="newFood.name" />
@@ -44,6 +44,7 @@
                         <div class="col-md-6">
                             <label for="">Photo <span class="error" v-if="!newFood.photo_url">*</span></label>
                             <input type="text" name="photo_url" class="form-control" v-model="newFood.photo_url" />
+                            <!--<input type="file" name="photo_url" class="form-control" />-->
                         </div>
                         <div class="col-md-6">
                             <img class="img-responsive" :src="newFood.photo_url" />
