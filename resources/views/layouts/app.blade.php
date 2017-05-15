@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="shortcut icon" href="http://www.localscafeutah.com/wp-content/uploads/2016/03/favicon1-1.ico">
     <title>What I ate</title>
 
     <!-- Fonts -->
@@ -49,6 +49,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>
+                    <li><a href="{{ url('/contact') }}">Contact</a></li>
                     <li><a href="{{ url('/food') }}">Food</a></li>
                     <li><a href="{{ url('/location') }}">Location</a></li>
                 </ul>
