@@ -19,6 +19,7 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 Route::get('/contact', 'PageController@contact');
+Route::resource('/cds', 'CdController');
 
 Route::get('/admin', 'AdminController@admin');
 Route::get('/admin/locations', 'AdminController@locations');
@@ -28,17 +29,12 @@ Route::put('/admin/location/update/{id}', 'AdminController@updateLocation');
 Route::get('/dashboard', 'AdminController@dashboard');
 
 Route::get('/user/food', 'AdminController@index');
-
 Route::get('/user/food/{id}', 'AdminController@detail');
-
 Route::post('/user/food/create', 'AdminController@create');
-
 Route::put('/user/food/update/{id}', 'AdminController@update');
-
 Route::delete('/user/food/delete/{id}', 'AdminController@delete');
 
 Route::get('/api', 'AdminController@api');
 
 Route::get('/food/{id?}', 'FoodController@index');
-
 Route::get('/location/{id?}', 'LocationController@index');
