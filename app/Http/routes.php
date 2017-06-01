@@ -20,6 +20,9 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 Route::get('/contact', 'PageController@contact');
 Route::resource('/cds', 'CdController');
+Route::get('/products', 'ProductController@index');
+Route::get('/products/create', 'ProductController@create');
+Route::post('/products', 'ProductController@store');
 
 Route::get('/admin', 'AdminController@admin');
 Route::get('/admin/locations', 'AdminController@locations');

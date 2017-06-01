@@ -78,7 +78,8 @@ class CdController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cd = Cd::find($id);
+        return view('cds.edit')->with('cd', $cd);
     }
 
     /**
@@ -90,6 +91,13 @@ class CdController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, 
+            [
+                'titel' => 'required|min:6',
+                'interpret' => 'required',
+                'jahr' => 'required'
+            ]
+        );
         $cd = Cd::find($id);
         $cd->update($request->all());
         return redirect('cds');
