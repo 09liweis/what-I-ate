@@ -2,16 +2,15 @@
 
 if (getenv('APP_ENV') == 'production') {
     $url = parse_url(getenv('CLEARDB_DATABASE_URL'));
-
     $host = $url['host'];
     $username = $url['user'];
     $password = $url['pass'];
     $database = substr($url['path'], 1);
 } else {
-    $host = env('DB_HOST', 'localhost');
-    $username = env('DB_USERNAME', 'forge');
-    $password = env('DB_PASSWORD', '');
-    $database = env('DB_DATABASE', 'forge');
+    $host = 'localhost';
+    $username = 'a09liweis';
+    $password = '';
+    $database = 'c9';
 }
 
 return [
