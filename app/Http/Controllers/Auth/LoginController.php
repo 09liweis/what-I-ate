@@ -33,7 +33,8 @@ class LoginController extends Controller {
     {
     }
     public function index(){
-        if (Auth::attempt(Input::get())) {
+        $inputs = Input::except('_method', '_token');
+        if (Auth::attempt($inputs)) {
             return [
                 'msg'=>'success!',
                 'code'=>200,
