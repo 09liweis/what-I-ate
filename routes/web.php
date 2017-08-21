@@ -15,8 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::auth();
-
 Route::get('/home', 'HomeController@index');
 Route::get('/contact', 'PageController@contact');
 Route::resource('/cds', 'CdController');
@@ -41,3 +39,6 @@ Route::get('/api', 'AdminController@api');
 
 Route::get('/food/{id?}', 'FoodController@index');
 Route::get('/location/{id?}', 'LocationController@index');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
