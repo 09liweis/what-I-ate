@@ -11,5 +11,6 @@
 |
 */
 
+Route::get('/api/users', 'ApiController@users');
 Route::get('/api/locations', 'ApiController@locations');
 Route::get('/api/foods', 'ApiController@foods');

@@ -13,6 +13,10 @@ use App\User;
 class ApiController extends Controller
 {
     
+    public function users() {
+        return User::all();
+    }
+    
     public function locations() {
         return Location::all();
     }
