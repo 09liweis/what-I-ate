@@ -29,7 +29,7 @@ class ApiController extends Controller
     
     //list of Foods
     public function foods() {
-        return Food::all();
+        return Food::with('user')->get();
     }
     
     public function food($id) {

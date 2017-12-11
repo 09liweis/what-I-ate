@@ -16,7 +16,7 @@ class FoodController extends Controller {
             $food = Food::find($id);
             return view('food/single', array('food' => $food, 'scripts' => array()));
         } else {
-            $foods = Food::with('user')->get();
+            $foods = Food::with('user')->orderBy('created_at', 'desc')->get();
             //return $foods;
             return view('food/list', array('foods' => $foods, 'scripts' => array()));   
         }
