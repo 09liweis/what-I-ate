@@ -19,17 +19,32 @@ class ApiController extends Controller
     }
     
     public function locations() {
-        return Location::all();
+        return Location::where('id', '>', '0')->orderBy('updated_at', 'DESC')->get();
     }
     
     public function location($id) {
         return Location::find($id);
     }
+    
+    public function upsertLocation(Request $request) {
+        $google_place_id = $request->google_place_id;
+        $location = Location::where('google_place_id', $google_place_id);
+        if (!$location) {
+            $location = new Location();
+            $location->name = $request->name;
+            $location->address = $request->address;
+            $location->lat = $request->lat;
+            $location->lng = $request->lng;
+            $location->photo_url = $request->photo_url;
+            $location->google_place_id = $request->google_place_id;
+            $location->save();
+        }
+    }
 
     
     //list of Foods
     public function foods() {
-        return Food::with('user')->get();
+        return Food::with('user')->orderBy('updated_at', 'DESC')->get();
     }
     
     public function food($id) {
@@ -37,6 +52,10 @@ class ApiController extends Controller
         $location = $food->location;
         $food->location = $location;
         return $food;
+    }
+    
+    public function upsertFood(Request $request) {
+        
     }
     
     public function getFromProduction() {

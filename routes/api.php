@@ -13,6 +13,7 @@
 
 Route::get('/api/users', 'ApiController@users');
 Route::get('/api/locations', 'ApiController@locations');
+Route::post('/api/location/submit', 'ApiController@upsertLocation');
 Route::get('/api/foods', 'ApiController@foods');
-
+Route::post('/api/food/submit', 'ApiController@upsertFood');
 Route::get('/api/getFromProduction', 'ApiController@getFromProduction');
