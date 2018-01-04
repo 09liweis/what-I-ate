@@ -42,6 +42,7 @@ class ApiController extends Controller
             }
             $location->save();
         }
+        return $location;
     }
 
     
@@ -69,6 +70,12 @@ class ApiController extends Controller
         $food->photo_url = $foodRequest['photo_url'];
         $food->price = $foodRequest['price'];
         $food->rating = $foodRequest['rating'];
+        
+        $user->foods()->save($food);
+        $food->save();
+        
+        $location = $this->upsertLocation($request->location['google_place_id']);
+        $food->location()->associate($location);
         $food->save();
         
     }
