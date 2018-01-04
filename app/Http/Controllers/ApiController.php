@@ -37,6 +37,9 @@ class ApiController extends Controller
             $location->lng = $request->lng;
             $location->photo_url = $request->photo_url;
             $location->google_place_id = $request->google_place_id;
+            if ($request->updated_at) {
+                $location->updated_at = $request->updated_at;
+            }
             $location->save();
         }
     }
@@ -55,6 +58,18 @@ class ApiController extends Controller
     }
     
     public function upsertFood(Request $request) {
+        $user = User::find($request->user['id']);
+        $foodRequest = $request->food;
+        if (!$foodRequest['id']) {
+            $food = new Food();
+        } else {
+            $food = Food::find($foodRequest['id']);
+        }
+        $food->name = $foodRequest['name'];
+        $food->photo_url = $foodRequest['photo_url'];
+        $food->price = $foodRequest['price'];
+        $food->rating = $foodRequest['rating'];
+        $food->save();
         
     }
     
