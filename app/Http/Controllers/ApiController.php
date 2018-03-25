@@ -48,7 +48,7 @@ class ApiController extends Controller
     
     //list of Foods
     public function foods() {
-        return Food::with('user')->orderBy('updated_at', 'DESC')->get();
+        return Food::with('location')->orderBy('updated_at', 'DESC')->get();
     }
     
     public function food($id) {
